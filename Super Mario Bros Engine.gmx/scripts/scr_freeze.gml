@@ -9,15 +9,18 @@
 */
 
 //Stop animation
-image_speed = 0;
+image_index -= image_speed;
 
 //Stop movement
+//x = xprevious;
+//y = yprevious;
 gravity = 0;
-vspeed = 0;
-hspeed = 0;
+x -= hspeed;
+y -= vspeed//-gravity;
 
 //Stop all alarms
 for (i=0; i<12; i++) {
-
-    alarm[i] = -1;
+    
+    if (alarm[i])
+        alarm[i]++;
 }

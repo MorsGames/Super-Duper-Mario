@@ -401,7 +401,7 @@ if (chase != 1) {
             <string>///Hammer bro logic
 
 //If the player dies, stop everything
-if (instance_exists(obj_player_dead)) {
+if (can_freeze()) {
 
     scr_freeze();
     exit;

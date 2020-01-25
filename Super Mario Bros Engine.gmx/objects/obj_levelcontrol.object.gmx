@@ -47,7 +47,6 @@ instance_create(0,0,obj_hud);
 
 //Jump to position
 x = view_xview[view_current]+128;
-view_object[0] = id;
 target = noone;
 </string>
           </argument>
@@ -395,15 +394,29 @@ if (levelmusic != noone) {
         audio_sound_pitch(bgm_invincible, 1);    
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Set the x position of the view.
 
-//Round position variables
-
-x = round(x);
-y = round(y);
-
-//Update parallax background position
-for (var i=0; i&lt;8; i++)
-    xx[i] = view_xview[view_current] / (1.5 + (0.5 * i));
+view_xview[view_current] = min(max(0,x-view_wview[view_current]/2), room_width-view_wview[view_current])
 </string>
           </argument>
         </arguments>
@@ -686,6 +699,10 @@ for (var i=0; i&lt;8; i++)
           <argument>
             <kind>1</kind>
             <string>///Draw parallax backgrounds
+
+//Update parallax background position
+for (var i=0; i&lt;8; i++)
+    xx[i] = view_xview[view_current] / (1.125 + (0.75 * i));
 
 //If the level is a castle maze
 if (instance_number(obj_castle) == 0) {

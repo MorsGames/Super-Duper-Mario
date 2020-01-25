@@ -51,11 +51,10 @@ if (instance_exists(obj_playerparent)) {
     
     //Hereby the player's facing direction
     image_xscale = obj_playerparent.xscale;
+    
+    _hspeed = obj_playerparent.hspeed
+    _vspeed = obj_playerparent.vspeed
 }
-
-//Make score texts invisible
-if (instance_number(obj_score) &gt; 0) 
-    with (obj_score) visible = false;
     
 //Make water invisible for a moment
 if (instance_number(obj_water) &gt; 0)
@@ -89,6 +88,8 @@ alarm[0] = 1;
 
 //Make the player visible
 obj_playerparent.visible = 1;
+obj_playerparent.hspeed = _hspeed;
+obj_playerparent.vspeed = _vspeed;
 </string>
           </argument>
         </arguments>
@@ -113,30 +114,15 @@ obj_playerparent.visible = 1;
             <kind>1</kind>
             <string>///Set up animation sequence and take up a screenshot.
 
-//Take a screenshot.
-back = background_create_from_surface(application_surface,0,0,room_width,room_height,0,0);
-
 //Deactivate all instances.
-instance_deactivate_all(true);
+/*instance_deactivate_all(true);
 
-//Activate score texts
-instance_activate_object(obj_score);
-if (instance_exists(obj_score)) {
-
-    with (obj_score) 
-        visible = 1;
-}
-
-//Activate water
-instance_activate_object(obj_water);
-if (instance_exists(obj_water)) {
-
-    with (obj_water) 
-        visible = 1;
-}
+tile_layer_hide(15)
+tile_layer_hide(12)
+tile_layer_hide(9)
 
 //Activate persistent object.
-instance_activate_object(obj_persistent);
+instance_activate_object(obj_persistent);*/
 
 //Set the animation sequence.
 switch (sequence) {
@@ -207,6 +193,34 @@ visible = 1;
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Freeze maryo
+with (obj_playerparent) {
+    scr_freeze()
+    hspeed = 0
+    vspeed = 0
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="7">
       <action>
         <libid>1</libid>
@@ -233,15 +247,13 @@ if (ready) {
         loop--;
     
     else {
-    
-        //Delete the screenshot if it exists.
-        if (background_exists(back)) {
-        
-            background_delete(back);
-        }
         
         //Activate all instances.
-        instance_activate_all();
+        /*instance_activate_all();
+        
+        tile_layer_show(15)
+        tile_layer_show(12)
+        tile_layer_show(9)*/
         
         //Destroy
         instance_destroy();
@@ -270,25 +282,7 @@ if (ready) {
           <argument>
             <kind>1</kind>
             <string>///Draw Mario
-
-//If the animation has been set, draw the background.
-if (ready) {
-
-    if (background_exists(back)) {
-    
-        //Disable alpha blending.
-        draw_enable_alphablend(0);
-        
-        //Draw the screenshot
-        draw_background(back,view_xview[0],view_yview[0]);
-        
-        //Enable alpha blending.
-        draw_enable_alphablend(1);
-    }
-}
-
-//Draw Mario
-draw_sprite_ext(sprite_index,-1,round(x),round(y)+1,image_xscale,1,0,c_white,image_alpha);
+draw_sprite_ext(sprite_index,-1,x,y+1,image_xscale,1,0,c_white,image_alpha);
 </string>
           </argument>
         </arguments>

@@ -78,7 +78,7 @@ instance_destroy();
             <kind>1</kind>
             <string>///Draw effect
 
-draw_sprite(sprite_index, -1, round(x), y);
+draw_sprite(sprite_index, -1, x, y);
 </string>
           </argument>
         </arguments>

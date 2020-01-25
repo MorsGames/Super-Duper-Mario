@@ -34,7 +34,21 @@ event_inherited();
 palette_index = pal_mario;
 
 //Inherit physical variables
-scr_physics_mario();
+switch (global.physics)
+{
+    case 0: 
+        scr_physics_mario_nes();
+    break;
+    case 1: 
+        scr_physics_mario_nes();
+    break;
+    case 2: 
+        scr_physics_mario_smas();
+    break;
+    case 3: 
+        scr_physics_mario_modern();
+    break;
+}
 </string>
           </argument>
         </arguments>
@@ -152,7 +166,7 @@ else if (crouch == false) {
         if (state == cs_idle) {
         
             //Set 'Walk' sprite
-            sprite_index = scr_mario_walk();
+            sprite_index = scr_mario_stand();
             
             //Do not animate
             image_speed = 0;
@@ -167,7 +181,7 @@ else if (crouch == false) {
             || ((hspeed &lt; -0.1) &amp;&amp; (xscale == 1)))
             &amp;&amp; (swimming == false) {
             
-                //Set 'Skid' sprite
+                //Set 'Stand' sprite
                 sprite_index = scr_mario_skid();
                 
                 //Do not animate

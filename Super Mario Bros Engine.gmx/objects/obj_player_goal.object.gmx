@@ -666,7 +666,7 @@ global.world = flagpole.nextlevel;
             <kind>1</kind>
             <string>///Draw the player
 
-draw_sprite_ext(sprite_index, -1, round(x), round(y)+1, image_xscale, 1, 0, c_white, image_alpha);
+draw_sprite_ext(sprite_index, -1, x, y+1, image_xscale, 1, 0, c_white, image_alpha);
 </string>
           </argument>
         </arguments>

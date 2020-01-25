@@ -183,7 +183,7 @@ if (x &lt; view_xview[0]-(48+(length*8)))
             <string>///Draw me!
 
 //Draw a fireball.
-draw_sprite(spr_firebar,anim,round(x)+8,round(y)+8);
+draw_sprite(spr_firebar,anim,x+8,y+8);
 </string>
           </argument>
         </arguments>

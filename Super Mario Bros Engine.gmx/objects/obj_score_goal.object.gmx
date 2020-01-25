@@ -83,7 +83,7 @@ if (y &lt; obj_flagpole.y+16) {
             <kind>1</kind>
             <string>///Draw it
 
-draw_sprite(sprite_index, -1, round(x), y);
+draw_sprite(sprite_index, -1, x, y);
 </string>
           </argument>
         </arguments>

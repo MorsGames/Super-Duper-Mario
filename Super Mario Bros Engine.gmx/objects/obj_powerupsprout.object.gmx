@@ -110,7 +110,7 @@ else {
             <string>///Item sprout logic
 
 //If the player dies, stop everything
-if (instance_exists(obj_player_dead)) {
+if (can_freeze()) {
 
     scr_freeze();
     exit;
@@ -204,7 +204,7 @@ if (palette_index != noone) {
 }
 
 //Draw it
-draw_sprite_part_ext(sprite_index, -1, 0, 0, 16, ystart-y, round(x)-8, y, 1, 1, c_white, 1);
+draw_sprite_part_ext(sprite_index, -1, 0, 0, 16, ystart-y, x-8, y, 1, 1, c_white, 1);
 
 //Reset shader
 pal_swap_reset();

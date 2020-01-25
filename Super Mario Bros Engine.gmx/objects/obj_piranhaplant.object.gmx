@@ -205,7 +205,7 @@ else {
             <string>///Piranha Plant logic
 
 //If the player dies, stop everything
-if (instance_exists(obj_player_dead)) {
+if (can_freeze()) {
 
     scr_freeze();
     exit;
@@ -299,7 +299,7 @@ if (palette_index != noone) {
 }
 
 //Draw sprite
-draw_sprite_ext(sprite_index, -1, round(x), round(y), xscale, image_yscale, 0, c_white, 1);
+draw_sprite_ext(sprite_index, -1, x, y, xscale, image_yscale, 0, c_white, 1);
 
 //Reset the palette
 pal_swap_reset();

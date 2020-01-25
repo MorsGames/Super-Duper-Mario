@@ -234,7 +234,7 @@ alarm[1] = 48+random(round(96));
             <string>///Podoboo logic
 
 //If the player dies, stop everything
-if (instance_exists(obj_player_dead)) {
+if (can_freeze()) {
 
     scr_freeze();
     exit;
@@ -314,9 +314,9 @@ if (vspeed &gt; 6)
             <string>///Draw podoboo
 
 if (vspeed &lt; 0)
-    draw_sprite(sprite_index, -1, round(x), round(y));
+    draw_sprite(sprite_index, -1, x, y);
 else
-    draw_sprite_ext(sprite_index, -1, round(x), round(y)+16, 1, -1, 0, c_white, 1);
+    draw_sprite_ext(sprite_index, -1, x, y+16, 1, -1, 0, c_white, 1);
 </string>
           </argument>
         </arguments>

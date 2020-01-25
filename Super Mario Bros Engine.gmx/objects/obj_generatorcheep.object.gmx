@@ -108,7 +108,7 @@ gravity = 0.075;
             <string>///Jumping cheep-cheep logic
 
 //If the player dies, stop everything
-if (instance_exists(obj_player_dead)) {
+if (can_freeze()) {
 
     scr_freeze();
     exit;

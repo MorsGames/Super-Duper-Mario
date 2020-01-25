@@ -27,7 +27,8 @@ void main()
     
     DoAlphaTest( source );
     
-    for (float i = palette_UVs.y; i < palette_UVs.w; i+=texel_size.y)
+    float i = palette_UVs.y;
+    while (i < palette_UVs.w)
     {
         if (distance(source, texture2D(palette_texture, vec2(palette_UVs.x, i))) <= 0.004)
         {
@@ -35,6 +36,7 @@ void main()
             source = texture2D(palette_texture, vec2(palette_V, i));
             break;
         }
+        i+=texel_size.y;
     }
 
     gl_FragColor = source * v_vColour;

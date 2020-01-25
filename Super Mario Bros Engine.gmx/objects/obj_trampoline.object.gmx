@@ -259,7 +259,7 @@ else if (sprite_index == spr_trampoline_end) {
 pal_swap_set(pal_blocks, global.skin, false);
 
 //Draw sprite
-draw_sprite(sprite_index, -1, round(x), round(y));
+draw_sprite(sprite_index, -1, x, y);
 
 //Reset the palette
 pal_swap_reset();

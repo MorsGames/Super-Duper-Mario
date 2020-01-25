@@ -66,13 +66,10 @@ alarm[0] = round(60*time);
             <kind>1</kind>
             <string>///Generate the platform if the generator is inside the view.
 
-//Do not generate if the player is dead
-if (instance_exists(obj_player_dead))
-exit;
-
 //If the generator is inside the view
 if (x &gt; view_xview[0]-48)
-&amp;&amp; (x &lt; view_xview[0]+view_wview[0]) {
+&amp;&amp; (x &lt; view_xview[0]+view_wview[0])
+&amp;&amp; (!can_freeze()) {
 
     //Generate a platform
     with (instance_create(x,y,obj_platform)) {

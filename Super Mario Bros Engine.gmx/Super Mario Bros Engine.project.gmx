@@ -3,7 +3,25 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="5" name="datafiles"/>
+  <datafiles number="6" name="datafiles">
+    <datafile>
+      <name>d3dcompiler_43.dll</name>
+      <exists>-1</exists>
+      <size>2106216</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>d3dcompiler_43.dll</filename>
+    </datafile>
+  </datafiles>
   <NewExtensions/>
   <sounds name="sound">
     <sounds name="Level Music">
@@ -69,6 +87,7 @@
       <sprites name="Mario">
         <sprites name="Small">
           <sprite>sprites\spr_mario_small_walk</sprite>
+          <sprite>sprites\spr_mario_small_stand</sprite>
           <sprite>sprites\spr_mario_small_jump</sprite>
           <sprite>sprites\spr_mario_small_skid</sprite>
           <sprite>sprites\spr_mario_small_climb</sprite>
@@ -100,6 +119,7 @@
       <sprites name="Luigi">
         <sprites name="Small">
           <sprite>sprites\spr_luigi_small_walk</sprite>
+          <sprite>sprites\spr_luigi_small_stand</sprite>
           <sprite>sprites\spr_luigi_small_jump</sprite>
           <sprite>sprites\spr_luigi_small_skid</sprite>
           <sprite>sprites\spr_luigi_small_climb</sprite>
@@ -134,6 +154,7 @@
       <sprite>sprites\spr_qblock_hidden</sprite>
       <sprite>sprites\spr_qblock_empty</sprite>
       <sprite>sprites\spr_brick</sprite>
+      <sprite>sprites\spr_brick_hider</sprite>
       <sprite>sprites\spr_shard</sprite>
     </sprites>
     <sprites name="Enemies">
@@ -331,6 +352,7 @@
       <background>background\bgr_mushrooms</background>
       <backgrounds name="Hills">
         <background>background\bgr_hills</background>
+        <background>background\bgr_hills2</background>
         <background>background\bgr_hills_forest</background>
       </backgrounds>
       <backgrounds name="Underground">
@@ -406,6 +428,7 @@
         <scripts name="Animation">
           <scripts name="Mario">
             <script>scripts\scr_mario_walk.gml</script>
+            <script>scripts\scr_mario_stand.gml</script>
             <script>scripts\scr_mario_jump.gml</script>
             <script>scripts\scr_mario_skid.gml</script>
             <script>scripts\scr_mario_climb.gml</script>
@@ -414,6 +437,7 @@
           </scripts>
           <scripts name="Luigi">
             <script>scripts\scr_luigi_walk.gml</script>
+            <script>scripts\scr_luigi_stand.gml</script>
             <script>scripts\scr_luigi_jump.gml</script>
             <script>scripts\scr_luigi_skid.gml</script>
             <script>scripts\scr_luigi_climb.gml</script>
@@ -422,8 +446,12 @@
           </scripts>
         </scripts>
         <scripts name="Physics">
-          <script>scripts\scr_physics_mario.gml</script>
-          <script>scripts\scr_physics_luigi.gml</script>
+          <script>scripts\scr_physics_mario_smas.gml</script>
+          <script>scripts\scr_physics_mario_nes.gml</script>
+          <script>scripts\scr_physics_mario_modern.gml</script>
+          <script>scripts\scr_physics_luigi_smas.gml</script>
+          <script>scripts\scr_physics_luigi_ll.gml</script>
+          <script>scripts\scr_physics_luigi_modern.gml</script>
         </scripts>
         <script>scripts\scr_player_create.gml</script>
         <script>scripts\scr_player_retrieve.gml</script>
@@ -468,6 +496,7 @@
     <script>scripts\sprite_get_constant.gml</script>
     <script>scripts\sprite_make_object.gml</script>
     <script>scripts\draw_background_tiled_horizontal_ext.gml</script>
+    <script>scripts\can_freeze.gml</script>
     <script>scripts\audio_loop_sound.gml</script>
   </scripts>
   <shaders name="shaders">
@@ -518,6 +547,7 @@
       <object>objects\obj_qblock_coins</object>
       <object>objects\obj_qblock_hidden</object>
       <object>objects\obj_emptyblock</object>
+      <object>objects\obj_brick_hider</object>
       <object>objects\obj_brick</object>
     </objects>
     <objects name="Enemies">
@@ -698,48 +728,53 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_nintendo</room>
+    <room>rooms\rm_levelstart</room>
     <rooms name="Levels">
-      <room>rooms\rm_levelstart</room>
-      <rooms name="World 1">
-        <rooms name="1-1">
-          <room>rooms\rm_w1_1</room>
-          <room>rooms\rm_w1_1_Bonus</room>
+      <rooms name="Original 1985">
+        <rooms name="World 1">
+          <rooms name="1-1">
+            <room>rooms\rm_w1_1</room>
+            <room>rooms\rm_w1_1_Bonus</room>
+          </rooms>
+          <rooms name="1-2">
+            <room>rooms\rm_w1_2</room>
+            <room>rooms\rm_w1_2_Main</room>
+            <room>rooms\rm_w1_2_Goal</room>
+            <room>rooms\rm_w1_2_Bonus</room>
+          </rooms>
+          <rooms name="1-3">
+            <room>rooms\rm_w1_3</room>
+          </rooms>
+          <rooms name="1-4">
+            <room>rooms\rm_w1_4</room>
+          </rooms>
         </rooms>
-        <rooms name="1-2">
-          <room>rooms\rm_w1_2</room>
-          <room>rooms\rm_w1_2_Main</room>
-          <room>rooms\rm_w1_2_Goal</room>
-          <room>rooms\rm_w1_2_Bonus</room>
+        <rooms name="World 2">
+          <rooms name="2-1">
+            <room>rooms\rm_w2_1</room>
+            <room>rooms\rm_w2_1_Bonus1</room>
+            <room>rooms\rm_w2_1_Bonus2</room>
+          </rooms>
+          <rooms name="2-2">
+            <room>rooms\rm_w2_2</room>
+            <room>rooms\rm_w2_2_Main</room>
+            <room>rooms\rm_w2_2_Goal</room>
+          </rooms>
+          <rooms name="2-3">
+            <room>rooms\rm_w2_3</room>
+          </rooms>
+          <rooms name="2-4">
+            <room>rooms\rm_w2_4</room>
+          </rooms>
         </rooms>
-        <rooms name="1-3">
-          <room>rooms\rm_w1_3</room>
-        </rooms>
-        <rooms name="1-4">
-          <room>rooms\rm_w1_4</room>
+        <rooms name="World 4">
+          <rooms name="4-4">
+            <room>rooms\rm_w4_4</room>
+          </rooms>
         </rooms>
       </rooms>
-      <rooms name="World 2">
-        <rooms name="2-1">
-          <room>rooms\rm_w2_1</room>
-          <room>rooms\rm_w2_1_Bonus1</room>
-          <room>rooms\rm_w2_1_Bonus2</room>
-        </rooms>
-        <rooms name="2-2">
-          <room>rooms\rm_w2_2</room>
-          <room>rooms\rm_w2_2_Main</room>
-          <room>rooms\rm_w2_2_Goal</room>
-        </rooms>
-        <rooms name="2-3">
-          <room>rooms\rm_w2_3</room>
-        </rooms>
-        <rooms name="2-4">
-          <room>rooms\rm_w2_4</room>
-        </rooms>
-      </rooms>
-      <rooms name="World 4">
-        <rooms name="4-4">
-          <room>rooms\rm_w4_4</room>
-        </rooms>
+      <rooms name="Super Duper Levels">
+        <room>rooms\rm_d1_1</room>
       </rooms>
     </rooms>
     <rooms name="Templates">

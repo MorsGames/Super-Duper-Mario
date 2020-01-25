@@ -34,10 +34,21 @@ event_inherited();
 palette_index = pal_luigi;
 
 //Inherit physical variables
-if (global.smb2jmode == true)
-    scr_physics_luigi();
-else
-    scr_physics_mario();
+switch (global.physics)
+{
+    case 0: 
+        scr_physics_mario_nes();
+    break;
+    case 1: 
+        scr_physics_luigi_ll();
+    break;
+    case 2: 
+        scr_physics_luigi_smas();
+    break;
+    case 3: 
+        scr_physics_luigi_modern();
+    break;
+}
 </string>
           </argument>
         </arguments>
@@ -154,8 +165,8 @@ else if (crouch == false) {
         //If Luigi is idling
         if (state == cs_idle) {
             
-                //Set 'Walk' sprite
-                sprite_index = scr_luigi_walk();
+                //Set 'Stand' sprite
+                sprite_index = scr_luigi_stand();
                 
                 //Do not animate
                 image_speed = 0;

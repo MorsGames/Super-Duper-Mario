@@ -9,16 +9,19 @@
 */
 
 //SMB2J Mode (If activated, this enables custom physics for Luigi.)
-global.smb2jmode = false;
+global.physics = 3; //NES, Lost, SNES, Modern
 
 //Hard mode (If activated, goombas turn into buzzy beetles.
-global.hardmode = true;
+global.hardmode = 0;
 
 //Current player (0: Mario, 1: Luigi)
 global.player = 0;
 
 //Current World (Must be in brackets)
-global.world = "2-4";
+global.world = "1-1";
+
+//Current Level Pack
+global.pack = 4;
 
 //Skin (0: NOR, 1: UND, 2: CAS)
 global.skin = 0;
